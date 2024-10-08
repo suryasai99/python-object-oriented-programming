@@ -13,13 +13,27 @@
 # For bonds: "description: duration'yr' : $price : yieldamt%"
 
 class Asset():
-    pass
+    def __init__(self, price):
+        self.price = price
 
-class Stock():
-    pass
+class Stock(Asset):
+    def __init__(self, ticker, price, company):
+        super().__init__(price)
+        self.ticker = ticker       
+        self.company = company
 
-class Bond():
-    pass
+    def get_description(self):
+        return(f'{self.ticker}: {self.company} -- ${self.price}')
+
+class Bond(Asset):
+    def __init__(self, price, description, duration, yyield):
+        super().__init__(price)
+        self.description = description
+        self.duration = duration
+        self.yyield = yyield
+    
+    def get_description(self):
+        return(f'{self.description}: {self.duration}yr : ${self.price} : {self.yyield}%')
 
 
 # ~~~~~~~~~ TEST CODE ~~~~~~~~~
